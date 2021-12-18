@@ -1,32 +1,29 @@
 package `in`.vikins.tacos
 
+import `in`.vikins.tacos.databinding.FragmentCreategrpBinding
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CreategrpFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CreategrpFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    val user = FirebaseAuth.getInstance().currentUser
+    val userid = user?.uid.toString()
+    lateinit var binding:FragmentCreategrpBinding
+    private lateinit var mfirebasedatabase:DatabaseReference
+    var imgurl:String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -34,26 +31,60 @@ class CreategrpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_creategrp, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CreategrpFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CreategrpFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        binding = FragmentCreategrpBinding.inflate(layoutInflater)
+        val loadimg = registerForActivityResult(
+            ActivityResultContracts.GetContent()
+        ) {
+            binding.grpImage.setImageURI(it)
+            if (it != null) {
+                imgurl = it.toString()
             }
+            else{
+                val directions = AboutFragmentDirections.actionAboutFragmentToHomeFragment()
+                findNavController().navigate(directions)
+            }
+        }
+        binding.grpImage.setOnClickListener {
+            loadimg.launch("image/*")
+        }
+        binding.creategrp.setOnClickListener {
+            binding.creategrp.visibility = View.VISIBLE
+            if(imgurl ==""){
+                Toast.makeText(activity,"Select Image", Toast.LENGTH_SHORT).show()
+                loadimg.launch("image/*")
+            }
+            else{
+                Creategrp()
+            }
+        }
+        return binding.root
+    }
+    fun Creategrp(){
+        val n = binding.grpname.text.toString()
+        val mfirebasestorage = Firebase.storage.reference
+        val file: Uri = Uri.parse(imgurl)
+        mfirebasestorage.child("grpimage/$userid/n").putFile(file).addOnSuccessListener{
+            binding.creategrp.visibility = View.INVISIBLE
+            mfirebasestorage.child("grpimage/$userid/n").downloadUrl.addOnSuccessListener {
+                mfirebasedatabase.child(n).child("grpdp").setValue(it.toString())
+                imgurl = it.toString()
+            }
+
+            val dp = imgurl
+            val mateno = binding.matesno.text.toString()
+            val grpdes = binding.grpdes.text.toString()
+            val memberlist: ArrayList<String> = ArrayList()
+            val requestlist: ArrayList<String> = ArrayList()
+            mfirebasedatabase = Firebase.database.reference.child("groups")
+            memberlist.add(userid)
+            val grpProfile = grpdata(n,mateno,grpdes,dp,memberlist,requestlist)
+
+            if(n.isNotEmpty()||mateno.isNotEmpty()||grpdes.isNotEmpty()||dp.isNotEmpty()){
+                mfirebasedatabase.child(n).setValue(grpProfile)
+            }
+            else{
+                Toast.makeText(activity,"Enter All Fields",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

@@ -23,7 +23,7 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
-                android:id="@+id/puserImage"
+                android:id="@+id/grpImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/ic_about"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:padding="10dp"
                 android:hint="No of Mates Required"/>
             <EditText

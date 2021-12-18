@@ -1,0 +1,54 @@
+<androidx.cardview.widget.CardView android:orientation="vertical"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginHorizontal="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_marginHorizontal="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/grpdp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_about"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"/>
+        <TextView
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:id="@+id/grpn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:padding="10dp"
+            android:hint="Name"/>
+            <TextView
+            android:textAllCaps="true"
+            android:id="@+id/matesreq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:padding="10dp"
+            android:hint="No of Mates Required"/>
+        <TextView
+            android:id="@+id/aboutgrp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:ems="10"
+            android:hint="Tell more about Your Ideas"
+            android:gravity="top|start"
+            android:layout_marginBottom="20dp"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

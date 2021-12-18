@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_groupsFragment_to_creategrpFragment"
             app:destination="@id/creategrpFragment" />
+        <action
+            android:id="@+id/action_groupsFragment_to_groupdetailsFragment"
+            app:destination="@id/groupdetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -47,4 +50,28 @@
         android:name="in.vikins.tacos.CreategrpFragment"
         android:label="fragment_creategrp"
         tools:layout="@layout/fragment_creategrp" />
+    <fragment
+        android:id="@+id/groupdetailsFragment"
+        android:name="in.vikins.tacos.GroupdetailsFragment"
+        android:label="fragment_groupdetails"
+        tools:layout="@layout/fragment_groupdetails" >
+        <argument
+            android:name="grpname"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_groupdetailsFragment_to_acceptFragment"
+            app:destination="@id/acceptFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/acceptFragment"
+        android:name="in.vikins.tacos.AcceptFragment"
+        android:label="fragment_accept"
+        tools:layout="@layout/fragment_accept" >
+        <argument
+            android:name="uid"
+            app:argType="string" />
+        <argument
+            android:name="grpname"
+            app:argType="string" />
+    </fragment>
 </navigation>

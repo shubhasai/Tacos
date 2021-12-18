@@ -51,7 +51,7 @@
         android:layout_marginHorizontal="5dp">
 
         <Button
-            android:id="@+id/web"
+            android:id="@+id/Myt"
             style="@style/ToggleButtonWithIconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,13 +59,14 @@
         <Button
             android:text="Join Teams"
             style="@style/ToggleButtonWithIconOnly"
-            android:id="@+id/blockchain"
+            android:id="@+id/Joint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </com.google.android.material.button.MaterialButtonToggleGroup>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/teams_list"
         android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
         android:layout_height="match_parent"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -27,8 +27,6 @@ class HomeAdapter(private val context: Context?, private val postlist:ArrayList<
         val likebtn:ImageView = view.findViewById(R.id.likeButton)
     }
 
-
-
     override fun onBindViewHolder(holder: Homeviewholder, position: Int) {
         val post = postlist[position]
         holder.username.text = post.author

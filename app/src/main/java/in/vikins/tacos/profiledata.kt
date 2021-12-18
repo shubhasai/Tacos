@@ -6,5 +6,6 @@ data class profiledata(
     val work: String = " ",
     val bio: String = " ",
     val dp:String = " ",
-    val resume_link: String = " "
+    val resume_link: String = " ",
+    val uid:String = ""
 )

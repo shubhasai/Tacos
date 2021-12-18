@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".AcceptFragment">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="5dp"
+        android:id="@+id/reqUdp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FF000000"
+        android:src="@drawable/ic_about"/>
+    <TextView
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shubhasai Mohapatra"
+        android:id="@+id/reqUName"/>
+    <TextView
+        android:text="Android Developer"
+        android:gravity="center"
+        android:id="@+id/reqwork"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Work"/>
+    <androidx.cardview.widget.CardView
+        android:layout_marginHorizontal="20dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            android:id="@+id/reqbio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bio (Tell Somethime more about you)"/>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_marginHorizontal="20dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            android:id="@+id/reqresume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Resume Link (Showcase Your Skills)"/>
+    </androidx.cardview.widget.CardView>
+    <Button
+        android:layout_marginTop="90dp"
+        android:id="@+id/accent"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:text="Accept"
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

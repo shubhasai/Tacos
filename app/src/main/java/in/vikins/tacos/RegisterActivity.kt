@@ -72,7 +72,7 @@ class RegisterActivity : AppCompatActivity() {
 //        val fbdatabase = FirebaseDatabase.getInstance()
 //        val fbreference = fbdatabase.getReference(firebaseregister?.uid.toString()).
         mfirebasedatabase = Firebase.database.reference.child("users")
-        val userProfile = profiledata(udname,udemail)
+        val userProfile = profiledata(udname,udemail, firebaseregister?.uid.toString())
         mfirebasedatabase.child(firebaseregister?.uid.toString()).setValue(userProfile)
     }
 }
