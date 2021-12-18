@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/grp1">
+        <item android:icon="@drawable/ic_home"
+            android:id="@+id/homeFragment"
+            android:title="Home"/>
+    </group>
+    <group android:id="@+id/grp2">
+        <item android:icon="@drawable/ic_about"
+            android:id="@+id/aboutFragment"
+            android:title="About"/>
+        <item android:icon="@drawable/ic_team"
+            android:id="@+id/groupsFragment"
+            android:title="Teams"/>
+<!--        <item android:icon="@drawable/ic_post"-->
+<!--            android:id="@+id/mypostFragment"-->
+<!--            android:title="My Post"/>-->
+    </group>
+<!--    <group android:id="@+id/grp3">-->
+<!--        <item android:icon="@drawable/ic_aboutus"-->
+<!--            android:id="@+id/aboutusFragment"-->
+<!--            android:title="About Us"/>-->
+<!--    </group>-->
+</menu>

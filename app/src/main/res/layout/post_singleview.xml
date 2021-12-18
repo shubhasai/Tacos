@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="16dp"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/puserImage"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/ic_about"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:textAllCaps="true"
+            android:id="@+id/ptitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/puserImage"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/puserImage"
+            android:layout_marginLeft="12dp"
+            android:textSize="16sp"
+            android:textColor="#212121"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/pname"
+            android:layout_width="0dp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/puserImage"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ptitle"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="12dp" />
+
+        <TextView
+            android:autoLink="all"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/puserImage"
+            android:id="@+id/ppostdes"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"
+            android:textColor="#212121" />
+
+        <ImageView
+            android:padding="2dp"
+            android:src="@drawable/ic_likeb"
+            android:id="@+id/likeButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintLeft_toLeftOf="@id/ppostdes"
+            app:layout_constraintTop_toBottomOf="@id/ppostdes"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/likeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/likeButton"
+            app:layout_constraintTop_toTopOf="@id/likeButton"
+            android:layout_marginLeft="6dp"
+            app:layout_constraintBottom_toBottomOf="@id/likeButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

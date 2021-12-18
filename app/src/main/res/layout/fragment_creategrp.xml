@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".CreategrpFragment">
+    <androidx.cardview.widget.CardView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp">
+        <LinearLayout
+            android:layout_marginHorizontal="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/puserImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_about"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp"/>
+            <EditText
+                android:textAllCaps="true"
+                android:id="@+id/grpname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:hint="Name"/>
+            <EditText
+                android:textAllCaps="true"
+                android:id="@+id/matesno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:hint="No of Mates Required"/>
+            <EditText
+                android:id="@+id/grpdes"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:ems="10"
+                android:hint="Tell more about Your Ideas"
+                android:gravity="bottom|start"
+                android:inputType="textMultiLine"
+                android:layout_marginBottom="20dp"/>
+
+            <Button
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/creategrp"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:text="Create Team"
+                android:layout_marginBottom="10dp"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.appcompat.widget.LinearLayoutCompat>

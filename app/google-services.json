@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "623195371512",
+    "project_id": "tacos-dea9f",
+    "storage_bucket": "tacos-dea9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623195371512:android:2a0842de331aa839eb880d",
+        "android_client_info": {
+          "package_name": "in.vikins.tacos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "623195371512-nt4k836kblg5ab69l8q8b3bs497t9e92.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFiElAcCOYyhIM3TnYt9JFrKedRoNch0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "623195371512-nt4k836kblg5ab69l8q8b3bs497t9e92.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

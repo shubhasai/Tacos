@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/login_screen">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/averia_libre_bold"
+        android:text="Welcome"
+        android:textColor="#EA09C4"
+        android:textSize="25sp" />
+    <EditText
+        android:id="@+id/loginEmailAddress"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/loginPassword"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"/>
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/login_btn" />
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/click_to_register"
+        android:padding="3dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New! Click Here To Register">
+    </TextView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/login_screen">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/amiko_bold"
+        android:text="Hi! Nice To See You"
+        android:textColor="#BA7DC1"
+        android:textSize="20sp" />
+    <EditText
+        android:layout_marginTop="25dp"
+        android:id="@+id/rgtname"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:hint="Name (Eleon Mask)"
+        android:inputType="textEmailAddress"/>
+    <EditText
+        android:id="@+id/rgtEmailAddress"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Email Address (eleon@mask.com)"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/rgtPassword"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"/>
+
+    <ImageView
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        app:srcCompat="@drawable/register_btn" />
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/click_to_login"
+        android:padding="3dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registered! Click Here To Login">
+    </TextView>
+</androidx.appcompat.widget.LinearLayoutCompat>

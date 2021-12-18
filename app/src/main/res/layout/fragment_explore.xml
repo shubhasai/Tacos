@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/hackathonsiteselction"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        app:singleSelection="true"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+        <Button
+            android:textSize="10sp"
+            android:text="Devfolio"
+            style="@style/ToggleButtonWithIconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/devfolio"/>
+        <Button
+            android:textSize="10sp"
+            android:text="Devpost"
+            style="@style/ToggleButtonWithIconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/devpost"/>
+        <Button
+            android:textSize="10sp"
+            android:text="Hackerearth"
+            style="@style/ToggleButtonWithIconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hackerearth"/>
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+    <WebView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/hackathonwebview"
+        android:layout_marginHorizontal="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
