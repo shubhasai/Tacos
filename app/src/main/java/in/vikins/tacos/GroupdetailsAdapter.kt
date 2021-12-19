@@ -33,7 +33,7 @@ class GroupdetailsAdapter(private val context: Context?, private val reqlist:Arr
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return reqlist.size
     }
 }
 interface reqClicked {

@@ -1,8 +1,8 @@
 package `in`.vikins.tacos
 
 data class profiledata(
-    val fname:String,
-    val email: String,
+    val fname:String ,
+    val email: String = "",
     val work: String = " ",
     val bio: String = " ",
     val dp:String = " ",

@@ -54,7 +54,7 @@ class GroupsFragment : Fragment(),grpClicked {
                     val members = ds.getValue(memberdata::class.java)
                     if (members != null) {
                         if (members.mid == userid.toString()){
-                            val direction = GroupsFragmentDirections.actionGroupsFragmentToGroupdetailsFragment(grpname)
+                            val direction = GroupsFragmentDirections.actionGroupsFragmentToGroupdetailsFragment(itemlist.name)
                             findNavController().navigate(direction)
                         }
                         else{
@@ -63,7 +63,7 @@ class GroupsFragment : Fragment(),grpClicked {
                             if (userid != null) {
                                 hashMap.put("mid",userid)
                             }
-                            rdatabase.child(grpname).child("requests").push().setValue(hashMap)
+                            rdatabase.child(itemlist.name).child("requests").push().setValue(hashMap)
                             Toast.makeText(activity,"Membership Requested",Toast.LENGTH_SHORT).show()
                         }
                     }
