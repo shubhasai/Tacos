@@ -11,9 +11,9 @@ import com.bumptech.glide.Glide
 
 class GroupdetailsAdapter(private val context: Context?, private val reqlist:ArrayList<profiledata>, private val listener: reqClicked):RecyclerView.Adapter<GroupdetailsAdapter.GrpdViewHolder>() {
     class GrpdViewHolder(view: View):RecyclerView.ViewHolder(view) {
-        val rname: TextView = view.findViewById(R.id.grpn)
-        val rwork: TextView = view.findViewById(R.id.aboutgrp)
-        val rdp: ImageView = view.findViewById(R.id.grpdp)
+        val rname: TextView = view.findViewById(R.id.rn)
+        val rwork: TextView = view.findViewById(R.id.rwork)
+        val rdp: ImageView = view.findViewById(R.id.rdp)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): GrpdViewHolder {

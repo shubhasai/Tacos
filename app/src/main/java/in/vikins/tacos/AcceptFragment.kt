@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.firebase.database.*
@@ -18,8 +19,6 @@ import com.google.firebase.storage.ktx.storage
 
 class AcceptFragment : Fragment() {
     private val args:AcceptFragmentArgs by navArgs()
-    private lateinit var mfirebasedatabase: DatabaseReference
-    private lateinit var mfirebasestorage: StorageReference
     lateinit var binding:FragmentAcceptBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,12 +29,8 @@ class AcceptFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        mfirebasedatabase = Firebase.database.reference
         binding = FragmentAcceptBinding.inflate(layoutInflater)
-        mfirebasestorage = Firebase.storage.reference
-        mfirebasestorage.child("image/${args.uid}").downloadUrl.addOnSuccessListener {
-            mfirebasedatabase.child("users").child(args.uid).child("dp").setValue(it.toString())
-        }
+        Toast.makeText(activity,args.uid  ,Toast.LENGTH_SHORT).show()
         val database = FirebaseDatabase.getInstance().getReference("users")
         database.child(args.uid).get().addOnSuccessListener {
             if(it.exists()){
@@ -52,23 +47,10 @@ class AcceptFragment : Fragment() {
             }
         }
         binding.accent.setOnClickListener {
-            val memberlist: ArrayList<String> = ArrayList()
-            val database = FirebaseDatabase.getInstance().getReference("groups")
-            database.child(args.grpname).child("requests").addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (datasnapshot: DataSnapshot in snapshot.children) {
-                        val req = datasnapshot.getValue(memberdata::class.java)
-                        if (req != null) {
-
-                        }
-                    }
-                    memberlist.add(args.uid)
-                }
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-            })
-            database.child(args.grpname).child("members").push().setValue(args.uid)
+            val hashMap: HashMap<String, String> = HashMap()
+            hashMap.put("mid",args.uid)
+            val acceptdatabase = FirebaseDatabase.getInstance().getReference("groups")
+            acceptdatabase.child(args.grpname).child("members").push().setValue(hashMap)
         }
         return binding.root
     }

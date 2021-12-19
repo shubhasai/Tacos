@@ -5,20 +5,29 @@
       <map>
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/drawable-anydpi/ic_likeb.xml" value="0.1671875" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/drawable-anydpi/ic_menu.xml" value="0.1671875" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/drawable-anydpi/ic_send.xml" value="0.1671875" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/drawable/input_text_background.xml" value="0.1671875" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/drawable/item_left_side_background.xml" value="0.1671875" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/drawable/item_right_side_backgroud.xml" value="0.1671875" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/drawable/item_right_side_background.xml" value="0.1671875" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/activity_login.xml" value="0.12" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/activity_register.xml" value="0.13968579234972678" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/activity_spalsh_screen.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/chat_left_side.xml" value="0.155078125" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/chat_right_side.xml" value="0.155078125" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/create_team.xml" value="0.155078125" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/drawer_header.xml" value="0.1305921052631579" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/fragment_about.xml" value="0.14349775784753363" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/fragment_accept.xml" value="0.155078125" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/fragment_chat.xml" value="0.155078125" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/fragment_creategrp.xml" value="0.155078125" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/fragment_explore.xml" value="0.155078125" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/fragment_groupdetails.xml" value="0.155078125" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/fragment_groups.xml" value="0.155078125" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/fragment_home.xml" value="0.1366120218579235" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/fragment_msg.xml" value="0.1" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/fragment_post.xml" value="0.155078125" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/grp_single_view.xml" value="0.155078125" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/layout/post_singleview.xml" value="0.22" />

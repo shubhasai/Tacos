@@ -11,6 +11,9 @@
         <item android:icon="@drawable/ic_team"
             android:id="@+id/groupsFragment"
             android:title="Teams"/>
+        <item android:icon="@drawable/ic_msg"
+            android:id="@+id/chatFragment"
+            android:title="Chats"/>
 <!--        <item android:icon="@drawable/ic_post"-->
 <!--            android:id="@+id/mypostFragment"-->
 <!--            android:title="My Post"/>-->

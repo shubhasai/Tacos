@@ -3,6 +3,7 @@ package `in`.vikins.tacos
 import `in`.vikins.tacos.databinding.FragmentGroupdetailsBinding
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,7 +41,7 @@ class GroupdetailsFragment : Fragment(),reqClicked {
         binding.requestlist.layoutManager = LinearLayoutManager(activity)
         layoutManager = LinearLayoutManager(activity)
         grpname = args.grpname
-//        getgroup()
+        getgroup()
         loadreq()
         return binding.root
         
@@ -71,7 +72,11 @@ class GroupdetailsFragment : Fragment(),reqClicked {
                 for (datasnapshot:DataSnapshot in snapshot.children){
                     val ruser = datasnapshot.getValue(profiledata::class.java)
                     if (ruser != null) {
-                        personArray.add(ruser)
+                        for (req in reqlist){
+                            if (req == ruser.uid){
+                                personArray.add(ruser)
+                            }
+                        }
                     }
                 }
                 val reqAdapter = GroupdetailsAdapter(activity as Context?, personArray,this@GroupdetailsFragment)
@@ -84,27 +89,30 @@ class GroupdetailsFragment : Fragment(),reqClicked {
         })
     }
     override fun onreqClicked(itemlist: profiledata) {
-        val direction = GroupdetailsFragmentDirections.actionGroupdetailsFragmentToAcceptFragment(itemlist.uid,grpname)
+        Log.d("uid",itemlist.uid)
+        val direction = GroupdetailsFragmentDirections.actionGroupdetailsFragmentToAcceptFragment(itemlist.uid,args.grpname)
         findNavController().navigate(direction)
     }
-//    fun getgroup(){
-//        var grpArray:ArrayList<grpdata> = ArrayList()
-//        val gdatabase = FirebaseDatabase.getInstance().getReference("groups")
-//        gdatabase.child(grpname).addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                grpArray.clear()
-//                for (datasnapshot:DataSnapshot in snapshot.children){
-//                    val grp = datasnapshot.getValue(grpdata::class.java)
-//                    if (grp != null) {
-//                        binding.gn.setText(grp.name)
-//                        Glide.with(context!!).load(grp.grpdp).error(R.drawable.ic_about).into(binding.gpic)
-//                    }
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                Toast.makeText(activity,"Something Went Wrong", Toast.LENGTH_SHORT).show()
-//            }
-//        })
-//    }
+    fun getgroup(){
+        var grpArray:ArrayList<grpdata> = ArrayList()
+        val gdatabase = FirebaseDatabase.getInstance().getReference("groups")
+        gdatabase.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                grpArray.clear()
+                for (datasnapshot:DataSnapshot in snapshot.children){
+                    val grp = datasnapshot.getValue(grpdata::class.java)
+                    if (grp != null) {
+                        if(grp.name == args.grpname){
+                            binding.gn.setText(grp.name)
+                            activity?.let { Glide.with(it).load(grp.grpdp).error(R.drawable.ic_about).into(binding.gpic) }
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(activity,"Something Went Wrong", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 }
