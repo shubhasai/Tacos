@@ -40,7 +40,7 @@ class CreategrpFragment : Fragment() {
                 imgurl = it.toString()
             }
             else{
-                val directions = AboutFragmentDirections.actionAboutFragmentToHomeFragment()
+                val directions = CreategrpFragmentDirections.actionCreategrpFragmentToHomeFragment()
                 findNavController().navigate(directions)
             }
         }
@@ -73,12 +73,9 @@ class CreategrpFragment : Fragment() {
             val dp = imgurl
             val mateno = binding.matesno.text.toString()
             val grpdes = binding.grpdes.text.toString()
-            val memberlist: ArrayList<String> = ArrayList()
-            val requestlist: ArrayList<String> = ArrayList()
             mfirebasedatabase = Firebase.database.reference.child("groups")
-            memberlist.add(userid)
-            requestlist.add(userid)
-            val grpProfile = grpdata(n,mateno,grpdes,dp,memberlist,requestlist)
+
+            val grpProfile = grpdata(n,mateno,grpdes,dp)
 
             if(n.isNotEmpty()||mateno.isNotEmpty()||grpdes.isNotEmpty()||dp.isNotEmpty()){
                 mfirebasedatabase.child(n).setValue(grpProfile)
@@ -86,6 +83,9 @@ class CreategrpFragment : Fragment() {
             else{
                 Toast.makeText(activity,"Enter All Fields",Toast.LENGTH_SHORT).show()
             }
+            val hashMap: HashMap<String, String> = HashMap()
+            hashMap.put("mid",userid)
+            mfirebasedatabase.child(n).child("members").push().setValue(hashMap)
         }
     }
 }

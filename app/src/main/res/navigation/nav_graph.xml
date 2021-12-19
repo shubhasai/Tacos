@@ -49,7 +49,11 @@
         android:id="@+id/creategrpFragment"
         android:name="in.vikins.tacos.CreategrpFragment"
         android:label="fragment_creategrp"
-        tools:layout="@layout/fragment_creategrp" />
+        tools:layout="@layout/fragment_creategrp" >
+        <action
+            android:id="@+id/action_creategrpFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/groupdetailsFragment"
         android:name="in.vikins.tacos.GroupdetailsFragment"

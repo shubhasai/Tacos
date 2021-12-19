@@ -54,14 +54,12 @@ class AcceptFragment : Fragment() {
         binding.accent.setOnClickListener {
             val memberlist: ArrayList<String> = ArrayList()
             val database = FirebaseDatabase.getInstance().getReference("groups")
-            database.child(args.grpname).addValueEventListener(object : ValueEventListener {
+            database.child(args.grpname).child("requests").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (datasnapshot: DataSnapshot in snapshot.children) {
-                        val grp = datasnapshot.getValue(grpdata::class.java)
-                        if (grp != null && grp.name == args.grpname) {
-                            for (member in grp.request) {
-                                memberlist.add(member)
-                            }
+                        val req = datasnapshot.getValue(memberdata::class.java)
+                        if (req != null) {
+
                         }
                     }
                     memberlist.add(args.uid)

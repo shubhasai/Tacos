@@ -40,29 +40,6 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/toggleButtonGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:singleSelection="true"
-        android:gravity = "left"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="5dp">
-
-        <Button
-            android:id="@+id/Myt"
-            style="@style/ToggleButtonWithIconOnly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Teams"/>
-        <Button
-            android:text="Join Teams"
-            style="@style/ToggleButtonWithIconOnly"
-            android:id="@+id/Joint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.button.MaterialButtonToggleGroup>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/teams_list"
         android:layout_width="match_parent"

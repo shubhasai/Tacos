@@ -23,7 +23,6 @@ class GroupsFragment : Fragment(),grpClicked {
     val user = FirebaseAuth.getInstance().currentUser
     val userid = user?.uid
     var grpname = ""
-    lateinit var grpArray:ArrayList<grpdata>
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var binding: FragmentGroupsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,127 +42,59 @@ class GroupsFragment : Fragment(),grpClicked {
         // recyclerview
         binding.teamsList.layoutManager = LinearLayoutManager(activity)
         layoutManager = LinearLayoutManager(activity)
-        grpArray = ArrayList()
-        getgrpslist()
-        binding.toggleButtonGroup.addOnButtonCheckedListener { toggleButtonGroup, checkedId, isChecked ->
+        getgrptest()
+        return binding.root
+    }
+    override fun ongrpClicked(itemlist: grpdata) {
+        val cdatabase = FirebaseDatabase.getInstance().getReference("groups")
+        cdatabase.child(itemlist.name).child("members").addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
 
-            if (isChecked) {
-                when (checkedId) {
-                    R.id.Myt -> {
-                        filter()
+                for (ds:DataSnapshot in snapshot.children){
+                    val members = ds.getValue(memberdata::class.java)
+                    if (members != null) {
+                        if (members.mid == userid.toString()){
+                            val direction = GroupsFragmentDirections.actionGroupsFragmentToGroupdetailsFragment(grpname)
+                            findNavController().navigate(direction)
+                        }
+                        else{
+                            val rdatabase = FirebaseDatabase.getInstance().getReference("groups")
+                            val hashMap: HashMap<String, String> = HashMap()
+                            if (userid != null) {
+                                hashMap.put("mid",userid)
+                            }
+                            rdatabase.child(grpname).child("requests").push().setValue(hashMap)
+                            Toast.makeText(activity,"Membership Requested",Toast.LENGTH_SHORT).show()
+                        }
                     }
-                    R.id.Joint -> {
-                        getgrpslist()
-                    }
-                }
-            } else {
-                if (toggleButtonGroup.checkedButtonId == View.NO_ID) {
-                    getgrpslist()
                 }
             }
 
-        }
-        return binding.root
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
-    fun getgrpslist(){
+    fun getgrptest(){
         val database = FirebaseDatabase.getInstance().getReference("groups")
+        val grpArray:ArrayList<grpdata> = ArrayList()
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 grpArray.clear()
-                for (datasnapshot:DataSnapshot in snapshot.children){
-                    val grp = datasnapshot.getValue(grpdata::class.java)
+                for (datasnapshot: DataSnapshot in snapshot.children){
+                    val grp= datasnapshot.getValue(grpdata::class.java)
                     if (grp != null) {
-                        grpname = grp.name
-                        for (member in grp.members)
-                        {
-                            if (member != userid){
-                                grpArray.add(grp)
-                            }
-                        }
+                        grpArray.add(grp)
                     }
                 }
                 val postAdapter = groupsAdapter(activity as Context?, grpArray,this@GroupsFragment)
                 binding.teamsList.adapter =postAdapter
             }
-
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(activity,"Something Went Wrong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity,"Something Went Wrong",Toast.LENGTH_SHORT).show()
             }
         })
     }
-    fun filter(){
-        val database = FirebaseDatabase.getInstance().getReference("groups")
-        val grpArray:ArrayList<grpdata> = ArrayList()
-        database.addValueEventListener(object :ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                grpArray.clear()
-                for (datasnapshot:DataSnapshot in snapshot.children){
-                    val grp = datasnapshot.getValue(grpdata::class.java)
-                    if (grp != null) {
-                        for (member in grp.members)
-                        {
-                            if (member == userid){
-                                grpArray.add(grp)
-                            }
-                        }
-                    }
-                }
-                val personAdapter = groupsAdapter(activity as Context?, grpArray,this@GroupsFragment)
-                binding.teamsList.adapter = personAdapter
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-    }
-    override fun ongrpClicked(itemlist: grpdata) {
-       handle()
-    }
-    fun handle(){
-        val cdatabase = FirebaseDatabase.getInstance().getReference("groups")
-        cdatabase.addValueEventListener(object :ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (datasnapshot: DataSnapshot in snapshot.children) {
-                    val grp = datasnapshot.getValue(grpdata::class.java)
-                    if (grp != null) {
-                        for (member in grp.members) {
-                            if (member == userid) {
-                                val direction = GroupsFragmentDirections.actionGroupsFragmentToGroupdetailsFragment(grpname)
-                                findNavController().navigate(direction)
-                            }
-                            else{
-                                val reqlist: ArrayList<String> = ArrayList()
-                                val rdatabase = FirebaseDatabase.getInstance().getReference("groups")
-                                rdatabase.child(grpname).addValueEventListener(object : ValueEventListener {
-                                    override fun onDataChange(snapshot: DataSnapshot) {
-                                        for (ds: DataSnapshot in snapshot.children) {
-                                            val grp = ds.getValue(grpdata::class.java)
-                                            if (grp != null) {
-                                                for (m in grp.request) {
-                                                    reqlist.add(m)
-                                                }
-                                            }
-                                        }
-                                        if (userid != null) {
-                                            reqlist.add(userid)
-                                        }
-                                    }
-                                    override fun onCancelled(error: DatabaseError) {
-                                        TODO("Not yet implemented")
-                                    }
-                                })
-                                rdatabase.child(grpname).child("request").push().setValue(userid)
-                                Toast.makeText(activity,"Membership Requested",Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-    }
 }
