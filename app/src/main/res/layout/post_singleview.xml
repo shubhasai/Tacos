@@ -55,8 +55,7 @@
             app:layout_constraintTop_toBottomOf="@id/puserImage"
             android:id="@+id/ppostdes"
             android:textSize="16sp"
-            android:layout_marginTop="12dp"
-            android:textColor="#212121" />
+            android:layout_marginTop="12dp"/>
 
         <ImageView
             android:padding="2dp"

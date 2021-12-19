@@ -40,7 +40,7 @@
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Password (Min 8 Characters)"
         android:inputType="textPassword"/>
 
     <ImageView
