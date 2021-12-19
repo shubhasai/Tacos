@@ -6,5 +6,5 @@ data class grpdata(
     val teambio:String = "",
     val grpdp:String = "",
     val members: ArrayList<String> = ArrayList(),
-    val request: ArrayList<String> = ArrayList()
+    val request: ArrayList<String> = ArrayList(),
 )

@@ -140,8 +140,10 @@ class GroupsFragment : Fragment(),grpClicked {
                                         for (datasnapshot: DataSnapshot in snapshot.children) {
                                             val grp = datasnapshot.getValue(grpdata::class.java)
                                             if (grp != null && grp.name == grpname) {
-                                                for (member in grp.request) {
-                                                    reqlist.add(member)
+                                                if (grp.members.size != 0){
+                                                    for (m in grp.request) {
+                                                        reqlist.add(m)
+                                                    }
                                                 }
                                             }
                                         }
@@ -153,7 +155,7 @@ class GroupsFragment : Fragment(),grpClicked {
                                         TODO("Not yet implemented")
                                     }
                                 })
-                                database.child(grpname).child("request").setValue(reqlist)
+                                database.child(grpname).child("request").setValue(userid)
                                 Toast.makeText(activity,"Membership Requested",Toast.LENGTH_SHORT).show()
                             }
                         }

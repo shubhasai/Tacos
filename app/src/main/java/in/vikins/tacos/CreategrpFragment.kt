@@ -77,6 +77,7 @@ class CreategrpFragment : Fragment() {
             val requestlist: ArrayList<String> = ArrayList()
             mfirebasedatabase = Firebase.database.reference.child("groups")
             memberlist.add(userid)
+            requestlist.add(userid)
             val grpProfile = grpdata(n,mateno,grpdes,dp,memberlist,requestlist)
 
             if(n.isNotEmpty()||mateno.isNotEmpty()||grpdes.isNotEmpty()||dp.isNotEmpty()){

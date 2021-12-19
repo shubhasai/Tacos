@@ -53,25 +53,27 @@ class GroupdetailsFragment : Fragment(),reqClicked {
                     if (grp != null && grp.name == grpname) {
                         for (member in grp.request)
                         {
-                            val reqdatabase = FirebaseDatabase.getInstance().getReference("users")
-                            val personArray:ArrayList<profiledata> = ArrayList()
-                            reqdatabase.addValueEventListener(object :ValueEventListener{
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    personArray.clear()
-                                    for (datasnapshot:DataSnapshot in snapshot.children){
-                                        val user = datasnapshot.getValue(profiledata::class.java)
-                                        if(user!!.uid == member ){
-                                            personArray.add(user)
+                            if (member != userid){
+                                val reqdatabase = FirebaseDatabase.getInstance().getReference("users")
+                                val personArray:ArrayList<profiledata> = ArrayList()
+                                reqdatabase.addValueEventListener(object :ValueEventListener{
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        personArray.clear()
+                                        for (datasnapshot:DataSnapshot in snapshot.children){
+                                            val user = datasnapshot.getValue(profiledata::class.java)
+                                            if(user!!.uid == member ){
+                                                personArray.add(user)
+                                            }
                                         }
+                                        val reqAdapter = GroupdetailsAdapter(activity as Context?, personArray,this@GroupdetailsFragment)
+                                        binding.requestlist.adapter = reqAdapter
                                     }
-                                    val reqAdapter = GroupdetailsAdapter(activity as Context?, personArray,this@GroupdetailsFragment)
-                                    binding.requestlist.adapter = reqAdapter
-                                }
 
-                                override fun onCancelled(error: DatabaseError) {
-                                    TODO("Not yet implemented")
-                                }
-                            })
+                                    override fun onCancelled(error: DatabaseError) {
+                                        TODO("Not yet implemented")
+                                    }
+                                })
+                            }
                         }
                     }
                 }
