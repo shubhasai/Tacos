@@ -155,7 +155,7 @@ class GroupsFragment : Fragment(),grpClicked {
                                         TODO("Not yet implemented")
                                     }
                                 })
-                                database.child(grpname).child("request").setValue(userid)
+                                database.child(grpname).child("request").setValue(reqlist)
                                 Toast.makeText(activity,"Membership Requested",Toast.LENGTH_SHORT).show()
                             }
                         }
