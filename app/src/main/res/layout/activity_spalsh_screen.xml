@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SpalshScreen"
-    android:background="#061151">
+    android:background="#D15680">
 
     <TextView
-        android:textColor="@color/white"
         android:id="@+id/textView"
-        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/acme"
         android:text="@string/name"
+        android:textColor="@color/white"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

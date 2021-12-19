@@ -44,10 +44,8 @@ class ChatFragment : Fragment(),userClicked {
                     val ruser = datasnapshot.getValue(profiledata::class.java)
                     if (ruser != null && (ruser.uid != userid)) {
                         personArray.add(ruser)
-                        Toast.makeText(activity,"inside"+personArray.size.toString(),Toast.LENGTH_SHORT).show()
                     }
                 }
-                Toast.makeText(activity,personArray.size.toString(),Toast.LENGTH_SHORT).show()
                 val personadapter = PersonAdapter(activity as Context?, personArray,this@ChatFragment)
                 binding.userlists.adapter = personadapter
             }

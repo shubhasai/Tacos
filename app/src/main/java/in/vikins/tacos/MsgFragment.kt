@@ -30,6 +30,7 @@ class MsgFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentMsgBinding.inflate(layoutInflater)
         binding.chatRecyclerView.layoutManager = LinearLayoutManager(activity)
         layoutManager = LinearLayoutManager(activity)
         binding.btnSendMessage.setOnClickListener {
@@ -44,7 +45,7 @@ class MsgFragment : Fragment() {
             }
         }
         readMessage(cuserid, arg.userid)
-        binding = FragmentMsgBinding.inflate(layoutInflater)
+
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
