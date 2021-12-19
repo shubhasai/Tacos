@@ -134,16 +134,14 @@ class GroupsFragment : Fragment(),grpClicked {
                             }
                             else{
                                 val reqlist: ArrayList<String> = ArrayList()
-                                val database = FirebaseDatabase.getInstance().getReference("groups")
-                                database.child(grpname).addValueEventListener(object : ValueEventListener {
+                                val rdatabase = FirebaseDatabase.getInstance().getReference("groups")
+                                rdatabase.child(grpname).addValueEventListener(object : ValueEventListener {
                                     override fun onDataChange(snapshot: DataSnapshot) {
-                                        for (datasnapshot: DataSnapshot in snapshot.children) {
-                                            val grp = datasnapshot.getValue(grpdata::class.java)
-                                            if (grp != null && grp.name == grpname) {
-                                                if (grp.members.size != 0){
-                                                    for (m in grp.request) {
-                                                        reqlist.add(m)
-                                                    }
+                                        for (ds: DataSnapshot in snapshot.children) {
+                                            val grp = ds.getValue(grpdata::class.java)
+                                            if (grp != null) {
+                                                for (m in grp.request) {
+                                                    reqlist.add(m)
                                                 }
                                             }
                                         }
@@ -155,7 +153,7 @@ class GroupsFragment : Fragment(),grpClicked {
                                         TODO("Not yet implemented")
                                     }
                                 })
-                                database.child(grpname).child("request").setValue(reqlist)
+                                rdatabase.child(grpname).child("request").push().setValue(userid)
                                 Toast.makeText(activity,"Membership Requested",Toast.LENGTH_SHORT).show()
                             }
                         }

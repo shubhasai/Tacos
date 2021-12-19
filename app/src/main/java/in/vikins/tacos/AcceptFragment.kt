@@ -70,7 +70,7 @@ class AcceptFragment : Fragment() {
                     TODO("Not yet implemented")
                 }
             })
-            database.child(args.grpname).child("members").setValue(memberlist)
+            database.child(args.grpname).child("members").push().setValue(args.uid)
         }
         return binding.root
     }
