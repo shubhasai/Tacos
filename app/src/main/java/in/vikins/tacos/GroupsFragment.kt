@@ -50,30 +50,29 @@ class GroupsFragment : Fragment(),grpClicked {
         return binding.root
     }
     override fun ongrpClicked(itemlist: grpdata) {
-        getgrptest()
         val cdatabase = FirebaseDatabase.getInstance().getReference("groups")
-        cdatabase.child(itemlist.name).child("members").addValueEventListener(object :ValueEventListener{
+        val q = cdatabase.child(itemlist.name).child("members").orderByChild("mid").equalTo(userid)
+        q.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-
-                for (ds:DataSnapshot in snapshot.children){
-                    val members = ds.getValue(memberdata::class.java)
-                    if (members != null) {
-                        if (members.mid == userid.toString()){
-
-                            val direction = GroupsFragmentDirections.actionGroupsFragmentToGroupdetailsFragment(itemlist.name)
-                            view?.findNavController()?.navigate(direction)
-                            break
-                        }
-                        else{
-                            val rdatabase = FirebaseDatabase.getInstance().getReference("groups")
-                            val hashMap: HashMap<String, String> = HashMap()
-                            if (userid != null) {
-                                hashMap.put("mid",userid)
-                            }
-                            rdatabase.child(itemlist.name).child("requests").push().setValue(hashMap)
-                            Toast.makeText(activity,"Membership Requested",Toast.LENGTH_SHORT).show()
-                        }
+                val memcheck:ArrayList<memberdata> = ArrayList()
+                for(ds:DataSnapshot in snapshot.children){
+                    val data = ds.getValue(memberdata::class.java)
+                    if (data != null) {
+                        memcheck.add(data)
                     }
+                }
+                if (memcheck.size != 0){
+                    val direction = GroupsFragmentDirections.actionGroupsFragmentToGroupdetailsFragment(itemlist.name)
+                    view?.findNavController()?.navigate(direction)
+                }
+                else{
+                    val rdatabase = FirebaseDatabase.getInstance().getReference("groups")
+                    val hashMap: HashMap<String, String> = HashMap()
+                    if (userid != null) {
+                        hashMap.put("mid",userid)
+                    }
+                    rdatabase.child(itemlist.name).child("requests").push().setValue(hashMap)
+                    Toast.makeText(activity,"Membership Requested",Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -82,6 +81,31 @@ class GroupsFragment : Fragment(),grpClicked {
             }
 
         })
+//        cdatabase.child(itemlist.name).child("members").addListenerForSingleValueEvent(object :ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//
+//                for (ds:DataSnapshot in snapshot.children){
+//                    val members = ds.getValue(memberdata::class.java)
+//                    if (members != null) {
+//                        if (members.mid == userid.toString()){
+//
+//                            val direction = GroupsFragmentDirections.actionGroupsFragmentToGroupdetailsFragment(itemlist.name)
+//                            view?.findNavController()?.navigate(direction)
+//                            break
+//                        }
+//                        else{
+//
+
+//                        }
+//                    }
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        })
     }
     fun getgrptest(){
         val database = FirebaseDatabase.getInstance().getReference("groups")
