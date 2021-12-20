@@ -11,10 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 
 class HomeFragment : Fragment(),postClicked {
     lateinit var postArray:ArrayList<postdata>
@@ -66,6 +63,21 @@ class HomeFragment : Fragment(),postClicked {
         })
     }
     override fun onitemClicked(itemlist: postdata) {
-
+//        val dbase = FirebaseDatabase.getInstance().getReference("posts")
+//        val query = dbase.orderByChild("des").equalTo(itemlist.des)
+//        query.addValueEventListener(object :ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                for ( ds:DataSnapshot in snapshot.children){
+//                    val updates: MutableMap<String, Any> = HashMap()
+//                    updates.put("like",itemlist.like+1)
+//                    ds.ref.updateChildren(updates)
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        })
     }
 }

@@ -42,7 +42,7 @@ class PostFragment : Fragment() {
                 var d = it.child("dp").value.toString()
                 val dp = d
                 val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference()
-                val hashMap: HashMap<String, String> = HashMap()
+                val hashMap: HashMap<String, Any> = HashMap()
                 if(name== ""||title.isEmpty()||des.isEmpty()){
                     Toast.makeText(activity,"Input All Field",Toast.LENGTH_SHORT).show()
                 }
@@ -51,7 +51,7 @@ class PostFragment : Fragment() {
                     hashMap.put("author", name)
                     hashMap.put("title", title)
                     hashMap.put("des", des)
-                    hashMap.put("like","0")
+                    hashMap.put("like",0)
                     hashMap.put("udp",dp)
                     reference.child("post").push().setValue(hashMap)
                     Toast.makeText(activity,"Uploaded Successfully", Toast.LENGTH_SHORT).show()

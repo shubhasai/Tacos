@@ -80,6 +80,9 @@
         <argument
             android:name="grpname"
             app:argType="string" />
+        <action
+            android:id="@+id/action_acceptFragment_to_groupsFragment"
+            app:destination="@id/groupsFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"

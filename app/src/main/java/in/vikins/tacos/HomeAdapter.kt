@@ -25,6 +25,7 @@ class HomeAdapter(private val context: Context?, private val postlist:ArrayList<
         val des:TextView = view.findViewById(R.id.ppostdes)
         val imgUser: ImageView = view.findViewById(R.id.puserImage)
         val likebtn:ImageView = view.findViewById(R.id.likeButton)
+//        val likes:TextView = view.findViewById(R.id.likeCount)
     }
 
     override fun onBindViewHolder(holder: Homeviewholder, position: Int) {
@@ -32,6 +33,7 @@ class HomeAdapter(private val context: Context?, private val postlist:ArrayList<
         holder.username.text = post.author
         holder.title.text = post.title
         holder.des.text = post.des
+//        holder.likes.text = post.like.toString()
         Glide.with(context!!).load(post.udp).error(R.drawable.ic_about).into(holder.imgUser)
         Glide.with(context).load(R.drawable.ic_likeb).error(R.drawable.ic_likeb).into(holder.likebtn)
     }

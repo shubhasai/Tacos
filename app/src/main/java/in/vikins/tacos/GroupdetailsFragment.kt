@@ -24,9 +24,11 @@ class GroupdetailsFragment : Fragment(),reqClicked {
     val user = FirebaseAuth.getInstance().currentUser
     val userid = user?.uid
     lateinit var layoutManager: RecyclerView.LayoutManager
+    lateinit var mlayoutManager: RecyclerView.LayoutManager
     lateinit var binding:FragmentGroupdetailsBinding
     lateinit var grpname: String
     private var reqlist:ArrayList<String> = ArrayList()
+    private var memlist:ArrayList<String> = ArrayList()
     val args:GroupdetailsFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +42,11 @@ class GroupdetailsFragment : Fragment(),reqClicked {
         binding = FragmentGroupdetailsBinding.inflate(layoutInflater)
         binding.requestlist.layoutManager = LinearLayoutManager(activity)
         layoutManager = LinearLayoutManager(activity)
+        binding.memberslist.layoutManager = LinearLayoutManager(activity)
+        mlayoutManager = LinearLayoutManager(activity)
         grpname = args.grpname
         getgroup()
+        loadmembers()
         loadreq()
         return binding.root
         
@@ -112,6 +117,50 @@ class GroupdetailsFragment : Fragment(),reqClicked {
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(activity,"Something Went Wrong", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+
+    fun loadmembers(){
+        Toast.makeText(activity,args.grpname,Toast.LENGTH_SHORT).show()
+        val database = FirebaseDatabase.getInstance().getReference("groups")
+        database.child(args.grpname).child("members").addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (datasnapshot:DataSnapshot in snapshot.children){
+                    val req = datasnapshot.getValue(memberdata::class.java)
+                    if (req != null) {
+                        memlist.add(req.mid)
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        val reqdatabase = FirebaseDatabase.getInstance().getReference("users")
+        val personArray:ArrayList<profiledata> = ArrayList()
+        reqdatabase.addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                personArray.clear()
+                for (datasnapshot:DataSnapshot in snapshot.children){
+                    val ruser = datasnapshot.getValue(profiledata::class.java)
+                    if (ruser != null) {
+                        for (req in memlist){
+                            if (req == ruser.uid){
+                                personArray.add(ruser)
+                            }
+                        }
+                    }
+                }
+                val reqAdapter = GroupdetailsmAdapter(activity as Context?, personArray)
+                binding.memberslist.adapter = reqAdapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
             }
         })
     }
