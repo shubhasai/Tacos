@@ -40,6 +40,14 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginHorizontal="20dp"-->
+<!--        android:layout_gravity="end"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/mygrps"-->
+<!--        android:text="My Groups"/>-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/teams_list"
         android:layout_width="match_parent"

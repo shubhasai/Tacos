@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +22,7 @@ import com.google.firebase.database.ValueEventListener
 
 class GroupsFragment : Fragment(),grpClicked {
     val user = FirebaseAuth.getInstance().currentUser
-    val userid = user?.uid
+    val userid = user?.uid.toString()
     var grpname = ""
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var binding: FragmentGroupsBinding
@@ -43,9 +44,13 @@ class GroupsFragment : Fragment(),grpClicked {
         binding.teamsList.layoutManager = LinearLayoutManager(activity)
         layoutManager = LinearLayoutManager(activity)
         getgrptest()
+//        binding.mygrps.setOnClickListener{
+//            getmygrptest()
+//        }
         return binding.root
     }
     override fun ongrpClicked(itemlist: grpdata) {
+        getgrptest()
         val cdatabase = FirebaseDatabase.getInstance().getReference("groups")
         cdatabase.child(itemlist.name).child("members").addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -54,8 +59,10 @@ class GroupsFragment : Fragment(),grpClicked {
                     val members = ds.getValue(memberdata::class.java)
                     if (members != null) {
                         if (members.mid == userid.toString()){
+
                             val direction = GroupsFragmentDirections.actionGroupsFragmentToGroupdetailsFragment(itemlist.name)
-                            findNavController().navigate(direction)
+                            view?.findNavController()?.navigate(direction)
+                            break
                         }
                         else{
                             val rdatabase = FirebaseDatabase.getInstance().getReference("groups")
@@ -96,5 +103,36 @@ class GroupsFragment : Fragment(),grpClicked {
             }
         })
     }
-
+//    fun getmygrptest(){
+//        val database = FirebaseDatabase.getInstance().getReference("groups")
+//        val grpArray:ArrayList<grpdata> = ArrayList()
+////        database.addValueEventListener(object : ValueEventListener {
+////            override fun onDataChange(snapshot: DataSnapshot) {
+////                grpArray.clear()
+////                for (datasnapshot: DataSnapshot in snapshot.children){
+////                    val grp= datasnapshot.getValue(grpdata::class.java)
+////                    val db = FirebaseDatabase.getInstance().getReference("groups")
+////                    db.child(grp!!.name).child("members").addListenerForSingleValueEvent(object:ValueEventListener{
+////                        override fun onDataChange(snapshot: DataSnapshot) {
+////                            for(data:DataSnapshot in snapshot.children){
+////                                val mem = data.getValue(memberdata::class.java)
+////                                if (mem!!.mid == userid){
+////                                    grpArray.add(grp)
+////                                }
+////                            }
+////                        }
+////                        override fun onCancelled(error: DatabaseError) {
+////                            TODO("Not yet implemented")
+////                        }
+////
+////                    })
+////                }
+////                val postAdapter = groupsAdapter(activity as Context?, grpArray,this@GroupsFragment)
+////                binding.teamsList.adapter =postAdapter
+////            }
+////            override fun onCancelled(error: DatabaseError) {
+////                Toast.makeText(activity,"Something Went Wrong",Toast.LENGTH_SHORT).show()
+////            }
+////        })
+//    }
 }

@@ -51,6 +51,20 @@ class AcceptFragment : Fragment() {
             hashMap.put("mid",args.uid)
             val acceptdatabase = FirebaseDatabase.getInstance().getReference("groups")
             acceptdatabase.child(args.grpname).child("members").push().setValue(hashMap)
+            val dbase = FirebaseDatabase.getInstance().getReference("groups")
+            val query = dbase.child(args.grpname).child("requests").orderByChild("mid").equalTo(args.uid)
+            query.addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for ( ds:DataSnapshot in snapshot.children){
+                        ds.ref.removeValue();
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
         }
         return binding.root
     }
