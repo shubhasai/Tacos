@@ -18,3 +18,11 @@ buildscript {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+buildscript {
+    ext.kotlin_version = '1.6.10'
+}
+ext {
+    coroutines = '1.5.2'
+    lifecycleVersion = '2.4.0'
+    roomVersion = '2.4.0'
+}

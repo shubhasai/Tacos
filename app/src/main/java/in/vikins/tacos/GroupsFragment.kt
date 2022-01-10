@@ -18,6 +18,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlin.properties.Delegates
 
 
 class GroupsFragment : Fragment(),grpClicked {
@@ -52,7 +53,7 @@ class GroupsFragment : Fragment(),grpClicked {
     override fun ongrpClicked(itemlist: grpdata) {
         val cdatabase = FirebaseDatabase.getInstance().getReference("groups")
         val q = cdatabase.child(itemlist.name).child("members").orderByChild("mid").equalTo(userid)
-        q.addListenerForSingleValueEvent(object :ValueEventListener{
+        q.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val memcheck:ArrayList<memberdata> = ArrayList()
                 for(ds:DataSnapshot in snapshot.children){
@@ -66,13 +67,36 @@ class GroupsFragment : Fragment(),grpClicked {
                     view?.findNavController()?.navigate(direction)
                 }
                 else{
-                    val rdatabase = FirebaseDatabase.getInstance().getReference("groups")
-                    val hashMap: HashMap<String, String> = HashMap()
-                    if (userid != null) {
-                        hashMap.put("mid",userid)
-                    }
-                    rdatabase.child(itemlist.name).child("requests").push().setValue(hashMap)
-                    Toast.makeText(activity,"Membership Requested",Toast.LENGTH_SHORT).show()
+                    val rmemarray:ArrayList<memberdata> = ArrayList()
+                    val crdatabase = FirebaseDatabase.getInstance().getReference("groups")
+                    val r = crdatabase.child(itemlist.name).child("requests").orderByChild("mid").equalTo(userid)
+                    r.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            var rcheck: Boolean
+                            for(rds:DataSnapshot in snapshot.children){
+                                val rmem = rds.getValue(memberdata::class.java)
+                                if (rmem != null) {
+                                    rmemarray.add(rmem)
+                                }
+                            }
+                            rcheck = rmemarray.size == 0
+                            if (rcheck){
+                                val rdatabase = FirebaseDatabase.getInstance().getReference("groups")
+                                val hashMap: HashMap<String, String> = HashMap()
+                                hashMap.put("mid",userid)
+                                rdatabase.child(itemlist.name).child("requests").push().setValue(hashMap)
+                                Toast.makeText(activity,"Membership Requested",Toast.LENGTH_SHORT).show()
+
+                            }
+                            else{
+                                Toast.makeText(activity,"Membership Already Requested",Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        override fun onCancelled(error: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
                 }
             }
 

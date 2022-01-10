@@ -51,7 +51,7 @@ class PostFragment : Fragment() {
                     hashMap.put("author", name)
                     hashMap.put("title", title)
                     hashMap.put("des", des)
-                    hashMap.put("like",0)
+                    hashMap.put("like","0")
                     hashMap.put("udp",dp)
                     reference.child("post").push().setValue(hashMap)
                     Toast.makeText(activity,"Uploaded Successfully", Toast.LENGTH_SHORT).show()

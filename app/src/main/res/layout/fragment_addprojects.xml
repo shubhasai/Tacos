@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/projectdp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_projectimage" />
+
+            <EditText
+                android:id="@+id/ProjectName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_toEndOf="@+id/projectdp"
+                android:gravity="center"
+                android:hint="Name Of Project (e.g. Tacos) "
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ProjectName"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="10dp"
+                android:layout_toEndOf="@+id/projectdp"
+                android:gravity="center"
+                android:hint="Category (Android App / Website)"
+                android:textSize="16sp" />
+        </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_marginHorizontal="20dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:gravity="bottom"
+                android:id="@+id/aboutProject"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:hint="  About Your Project (Link / Github)"/>
+        </androidx.cardview.widget.CardView>
+        <Button
+            android:layout_marginTop="30dp"
+            android:id="@+id/addproject"
+            android:text="Add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

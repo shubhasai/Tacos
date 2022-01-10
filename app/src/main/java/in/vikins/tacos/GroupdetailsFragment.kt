@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,13 +34,6 @@ class GroupdetailsFragment : Fragment(),reqClicked {
     val args:GroupdetailsFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentGroupdetailsBinding.inflate(layoutInflater)
         binding.requestlist.layoutManager = LinearLayoutManager(activity)
         layoutManager = LinearLayoutManager(activity)
@@ -48,6 +43,21 @@ class GroupdetailsFragment : Fragment(),reqClicked {
         getgroup()
         loadmembers()
         loadreq()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+
+        getgroup()
+//        loadmembers()
+//        loadreq()
+        binding.grpmsg.setOnClickListener {
+            val direction = GroupdetailsFragmentDirections.actionGroupdetailsFragmentToGrpchatFragment(args.grpname)
+            findNavController().navigate(direction)
+        }
         return binding.root
         
     }
@@ -123,7 +133,7 @@ class GroupdetailsFragment : Fragment(),reqClicked {
 
 
     fun loadmembers(){
-        Toast.makeText(activity,args.grpname,Toast.LENGTH_SHORT).show()
+
         val database = FirebaseDatabase.getInstance().getReference("groups")
         database.child(args.grpname).child("members").addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -142,6 +152,7 @@ class GroupdetailsFragment : Fragment(),reqClicked {
 
         val reqdatabase = FirebaseDatabase.getInstance().getReference("users")
         val personArray:ArrayList<profiledata> = ArrayList()
+        personArray.clear()
         reqdatabase.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 personArray.clear()
@@ -157,6 +168,7 @@ class GroupdetailsFragment : Fragment(),reqClicked {
                 }
                 val reqAdapter = GroupdetailsmAdapter(activity as Context?, personArray)
                 binding.memberslist.adapter = reqAdapter
+
             }
 
             override fun onCancelled(error: DatabaseError) {

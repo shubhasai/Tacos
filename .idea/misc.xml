@@ -3,6 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/about_myproject.xml" value="0.14105191256830601" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/about_myproject_singleview.xml" value="0.14719945355191258" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/drawer_header.xml" value="0.1" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_about.xml" value="0.14105191256830601" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_addproject.xml" value="0.14105191256830601" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_addprojects.xml" value="0.14105191256830601" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_chat.xml" value="0.155078125" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_groupdetails.xml" value="0.155078125" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_grpchat.xml" value="0.155078125" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_msg.xml" value="0.155078125" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_projects.xml" value="0.1284153005464481" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_todo.xml" value="0.1284153005464481" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/grp_single_view.xml" value="0.1" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/post_singleview.xml" value="0.1284153005464481" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/project_singleview.xml" value="0.14105191256830601" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/task_single_view.xml" value="0.22" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/menu/menu.xml" value="0.155078125" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/menu/sidemenu.xml" value="0.155078125" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/drawable-anydpi/ic_likeb.xml" value="0.1671875" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/drawable-anydpi/ic_menu.xml" value="0.1671875" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Tacos/app/src/main/res/drawable-anydpi/ic_send.xml" value="0.1671875" />

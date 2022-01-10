@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_aboutFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_aboutFragment_to_addprojectsFragment"
+            app:destination="@id/addprojectsFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupsFragment"
@@ -68,6 +71,9 @@
         <action
             android:id="@+id/action_groupdetailsFragment_to_acceptFragment"
             app:destination="@id/acceptFragment" />
+        <action
+            android:id="@+id/action_groupdetailsFragment_to_grpchatFragment"
+            app:destination="@id/grpchatFragment" />
     </fragment>
     <fragment
         android:id="@+id/acceptFragment"
@@ -102,6 +108,37 @@
             android:name="userid"
             app:argType="string" />
         <argument android:name="username"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/grpchatFragment"
+        android:name="in.vikins.tacos.GrpchatFragment"
+        android:label="fragment_grpchat"
+        tools:layout="@layout/fragment_grpchat" >
+        <argument
+            android:name="grpname"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/todoFragment"
+        android:name="in.vikins.tacos.TodoFragment"
+        android:label="fragment_todo"
+        tools:layout="@layout/fragment_todo" />
+    <fragment
+        android:id="@+id/projectsFragment"
+        android:name="in.vikins.tacos.ProjectsFragment"
+        android:label="fragment_projects"
+        tools:layout="@layout/fragment_projects" />
+    <fragment
+        android:id="@+id/addprojectsFragment"
+        android:name="in.vikins.tacos.AddprojectsFragment"
+        android:label="fragment_addprojects"
+        tools:layout="@layout/fragment_addprojects" >
+        <action
+            android:id="@+id/action_addprojectsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="author"
             app:argType="string" />
     </fragment>
 </navigation>

@@ -1,6 +1,7 @@
 package `in`.vikins.tacos
 
 import `in`.vikins.tacos.databinding.FragmentAboutBinding
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,10 +11,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
@@ -38,8 +40,10 @@ class AboutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        readdata()
+
         binding = FragmentAboutBinding.inflate(layoutInflater)
+        readdata()
+        loadproject()
         mfirebasedatabase = Firebase.database.reference
         val loadimg = registerForActivityResult(
             ActivityResultContracts.GetContent()
@@ -66,6 +70,11 @@ class AboutFragment : Fragment() {
             else{
                 savedata()
             }
+        }
+        binding.addproject.setOnClickListener {
+            val direction = AboutFragmentDirections.actionAboutFragmentToAddprojectsFragment(binding.aboutUName.text.toString())
+            findNavController().navigate(direction)
+
         }
         return binding.root
     }
@@ -110,7 +119,7 @@ class AboutFragment : Fragment() {
                 val p = it.child("dp").value
                 Glide.with(this).load(p).error(R.drawable.ic_about).into(binding.AboutUdp)
                 val n = it.child("fname").value.toString().uppercase()
-                binding.AboutUName.setText(n)
+                binding.aboutUName.setText(n)
                 val w = it.child("work").value.toString()
                 binding.work.setText(w)
                 val b = it.child("bio").value.toString()
@@ -119,5 +128,29 @@ class AboutFragment : Fragment() {
                 binding.resume.setText(r)
             }
         }
+    }
+    fun loadproject(){
+        binding.myprojects.layoutManager =GridLayoutManager(context,2)
+        val reqdatabase = FirebaseDatabase.getInstance().getReference("projects")
+        val projectArray:ArrayList<projectData> = ArrayList()
+        val user = FirebaseAuth.getInstance().currentUser
+        val userid = user?.uid.toString()
+        reqdatabase.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                projectArray.clear()
+                for (datasnapshot: DataSnapshot in snapshot.children) {
+                    val ruser = datasnapshot.getValue(projectData::class.java)
+                    if (ruser != null && (ruser.userid != userid)) {
+                        projectArray.add(ruser)
+                    }
+                }
+                val personadapter = projectsAdapter(activity as Context?, projectArray)
+                binding.myprojects.adapter = personadapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 }
