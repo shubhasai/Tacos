@@ -30,7 +30,6 @@ class GroupdetailsFragment : Fragment(),reqClicked {
     lateinit var binding:FragmentGroupdetailsBinding
     lateinit var grpname: String
     private var reqlist:ArrayList<String> = ArrayList()
-    private var argmsgname:String = ""
     private var memlist:ArrayList<String> = ArrayList()
     val args:GroupdetailsFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,12 +58,14 @@ class GroupdetailsFragment : Fragment(),reqClicked {
             val database = FirebaseDatabase.getInstance().getReference("users")
 
             database.child(userid).get().addOnSuccessListener {
+
                 if(it.exists()){
-                    argmsgname = it.child("fname").value.toString().uppercase()
+                    val n = it.child("fname").value.toString().uppercase()
+                    val direction = GroupdetailsFragmentDirections.actionGroupdetailsFragmentToGrpchatFragment(args.grpname,n)
+                    findNavController().navigate(direction)
                 }
             }
-            val direction = GroupdetailsFragmentDirections.actionGroupdetailsFragmentToGrpchatFragment(args.grpname,argmsgname)
-            findNavController().navigate(direction)
+
         }
         return binding.root
         

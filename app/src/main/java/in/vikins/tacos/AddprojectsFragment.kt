@@ -65,10 +65,9 @@ class AddprojectsFragment : Fragment() {
         val userid = user?.uid.toString()
         mfirebasestorage = Firebase.storage.reference
         val file: Uri = Uri.parse(imgurl)
-        mfirebasestorage.child("projectimage/$userid/${binding.ProjectName.text}").putFile(file).addOnSuccessListener{
+        mfirebasestorage.child("projectimage/${binding.ProjectName.text}").putFile(file).addOnSuccessListener{
             binding.addproject.visibility = View.INVISIBLE
-            mfirebasestorage.child("image/$userid/${binding.ProjectName.text}").downloadUrl.addOnSuccessListener {
-                mfirebasedatabase.child("users").child(userid).child("dp").setValue(it.toString())
+            mfirebasestorage.child("projectimage/${binding.ProjectName.text}").downloadUrl.addOnSuccessListener {
                 imgurl = it.toString()
             }
             val name = binding.ProjectName.text.toString().lowercase()

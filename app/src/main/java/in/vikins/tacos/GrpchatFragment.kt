@@ -49,6 +49,7 @@ class GrpchatFragment : Fragment() {
         hashMap.put("userid", senderId)
         hashMap.put("message", message)
         reference!!.child("Groupchat").child(args.grpname).push().setValue(hashMap)
+        binding.grpetMessage.setText(" ")
 
     }
     fun readMessage() {
