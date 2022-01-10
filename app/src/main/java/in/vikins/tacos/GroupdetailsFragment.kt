@@ -24,12 +24,13 @@ import com.google.firebase.database.ValueEventListener
 
 class GroupdetailsFragment : Fragment(),reqClicked {
     val user = FirebaseAuth.getInstance().currentUser
-    val userid = user?.uid
+    val userid = user?.uid.toString()
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var mlayoutManager: RecyclerView.LayoutManager
     lateinit var binding:FragmentGroupdetailsBinding
     lateinit var grpname: String
     private var reqlist:ArrayList<String> = ArrayList()
+    private var argmsgname:String = ""
     private var memlist:ArrayList<String> = ArrayList()
     val args:GroupdetailsFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +56,14 @@ class GroupdetailsFragment : Fragment(),reqClicked {
 //        loadmembers()
 //        loadreq()
         binding.grpmsg.setOnClickListener {
-            val direction = GroupdetailsFragmentDirections.actionGroupdetailsFragmentToGrpchatFragment(args.grpname)
+            val database = FirebaseDatabase.getInstance().getReference("users")
+
+            database.child(userid).get().addOnSuccessListener {
+                if(it.exists()){
+                    argmsgname = it.child("fname").value.toString().uppercase()
+                }
+            }
+            val direction = GroupdetailsFragmentDirections.actionGroupdetailsFragmentToGrpchatFragment(args.grpname,argmsgname)
             findNavController().navigate(direction)
         }
         return binding.root

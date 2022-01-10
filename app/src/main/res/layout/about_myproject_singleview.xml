@@ -2,14 +2,17 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="150dp"
     app:cardCornerRadius="10dp"
-    android:layout_marginHorizontal="5dp"
+    android:layout_marginHorizontal="10dp"
     android:layout_marginTop="5dp"
+    android:layout_marginBottom="10dp"
     android:padding="5dp"
-    android:layout_height="wrap_content">
+    android:layout_height="180dp">
 
     <LinearLayout
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
         android:padding="2dp"
         android:gravity="center"
         android:orientation="vertical"
@@ -17,11 +20,12 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/projectpic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_project" />
 
         <TextView
+            android:textAllCaps="true"
             android:layout_marginTop="10dp"
             android:textSize="15sp"
             android:id="@+id/projecttitle"

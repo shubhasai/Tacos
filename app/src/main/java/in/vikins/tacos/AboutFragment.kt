@@ -4,6 +4,7 @@ import `in`.vikins.tacos.databinding.FragmentAboutBinding
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -128,9 +130,10 @@ class AboutFragment : Fragment() {
                 binding.resume.setText(r)
             }
         }
+        loadproject()
     }
     fun loadproject(){
-        binding.myprojects.layoutManager =GridLayoutManager(context,2)
+        binding.myprojects.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
         val reqdatabase = FirebaseDatabase.getInstance().getReference("projects")
         val projectArray:ArrayList<projectData> = ArrayList()
         val user = FirebaseAuth.getInstance().currentUser
@@ -140,11 +143,12 @@ class AboutFragment : Fragment() {
                 projectArray.clear()
                 for (datasnapshot: DataSnapshot in snapshot.children) {
                     val ruser = datasnapshot.getValue(projectData::class.java)
-                    if (ruser != null && (ruser.userid != userid)) {
+                    if (ruser != null && (ruser.userid == userid)) {
                         projectArray.add(ruser)
+                        Log.d("pic",ruser.dp)
                     }
                 }
-                val personadapter = projectsAdapter(activity as Context?, projectArray)
+                val personadapter = myprojectAdapter(activity as Context?, projectArray)
                 binding.myprojects.adapter = personadapter
             }
 

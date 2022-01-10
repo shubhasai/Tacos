@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/about_myproject.xml" value="0.14105191256830601" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/about_myproject_singleview.xml" value="0.14719945355191258" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/chat_left_side.xml" value="0.1" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/chat_right_side.xml" value="0.1" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/drawer_header.xml" value="0.1" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_about.xml" value="0.14105191256830601" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_addproject.xml" value="0.14105191256830601" />
@@ -15,6 +17,8 @@
         <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_msg.xml" value="0.155078125" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_projects.xml" value="0.1284153005464481" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/fragment_todo.xml" value="0.1284153005464481" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/grp_chat_leftside.xml" value="0.15" />
+        <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/grp_chat_rightside.xml" value="0.1" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/grp_single_view.xml" value="0.1" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/post_singleview.xml" value="0.1284153005464481" />
         <entry key="..\:/Users/SHUBHASAI/Desktop/Android/Tacos/app/src/main/res/layout/project_singleview.xml" value="0.14105191256830601" />

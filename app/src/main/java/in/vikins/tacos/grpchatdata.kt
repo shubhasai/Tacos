@@ -1,6 +1,7 @@
 package `in`.vikins.tacos
 
 data class grpchatdata(
-    var senderId:String = "",
+    var sendername:String = "",
+    var userid:String = "",
     var message:String = ""
 )

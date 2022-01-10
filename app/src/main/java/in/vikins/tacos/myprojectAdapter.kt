@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 class myprojectAdapter(private val context: Context?, private val projectlist:ArrayList<projectData>):RecyclerView.Adapter<myprojectAdapter.myprojectviewHolder>() {
     class myprojectviewHolder(view: View):RecyclerView.ViewHolder(view){
         val name:TextView = view.findViewById(R.id.projecttitle)
-        val dp:ImageView = view.findViewById(R.id.projectdp)
+        val projectpic:ImageView = view.findViewById(R.id.projectpic)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myprojectviewHolder {
@@ -23,8 +23,8 @@ class myprojectAdapter(private val context: Context?, private val projectlist:Ar
 
     override fun onBindViewHolder(holder: myprojectviewHolder, position: Int) {
         val project = projectlist[position]
-        holder.name.text = project.author
-        Glide.with(context!!).load(project.dp).error(R.drawable.ic_projectimage).into(holder.dp)
+        holder.name.text = project.name
+        Glide.with(context!!).load(project.dp).error(R.drawable.ic_project).into(holder.projectpic)
     }
 
     override fun getItemCount(): Int {
