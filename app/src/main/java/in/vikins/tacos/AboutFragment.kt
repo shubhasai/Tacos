@@ -5,15 +5,13 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -24,23 +22,18 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 
 class AboutFragment : Fragment() {
-    var imgurl:String = ""
-    var skills:String = ""
+    private var imgurl:String = ""
+    private var skills:String = ""
     private lateinit var binding: FragmentAboutBinding
     private lateinit var mfirebasedatabase: DatabaseReference
     private lateinit var mfirebasestorage: StorageReference
     val user = FirebaseAuth.getInstance().currentUser
     val userid = user?.uid.toString()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
 
         binding = FragmentAboutBinding.inflate(layoutInflater)
@@ -110,7 +103,7 @@ class AboutFragment : Fragment() {
         }
 
     }
-    fun readdata(){
+    private fun readdata(){
         mfirebasestorage = Firebase.storage.reference
         mfirebasestorage.child("image/${userid}").downloadUrl.addOnSuccessListener {
             mfirebasedatabase.child("users").child(userid).child("dp").setValue(it.toString())
@@ -121,7 +114,7 @@ class AboutFragment : Fragment() {
                 val p = it.child("dp").value
                 Glide.with(this).load(p).error(R.drawable.ic_about).into(binding.AboutUdp)
                 val n = it.child("fname").value.toString().uppercase()
-                binding.aboutUName.setText(n)
+                binding.aboutUName.text = n
                 val w = it.child("work").value.toString()
                 binding.work.setText(w)
                 val b = it.child("bio").value.toString()
@@ -132,7 +125,7 @@ class AboutFragment : Fragment() {
         }
         loadproject()
     }
-    fun loadproject(){
+    private fun loadproject(){
         binding.myprojects.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
         val reqdatabase = FirebaseDatabase.getInstance().getReference("projects")
         val projectArray:ArrayList<projectData> = ArrayList()
